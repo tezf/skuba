@@ -1,29 +1,36 @@
 import chalk from 'chalk';
 
-import { hasDebugFlag } from '../utils/args';
+import { hasDebugFlag, parseNonFlagArgs } from '../utils/args';
 import { createLogger, log } from '../utils/logging';
 
 import { runESLint } from './adapter/eslint';
 import { runPrettier } from './adapter/prettier';
+import { getFiles } from './lint/files';
 import { internalLint } from './lint/internal';
 
 export const format = async (args = process.argv.slice(2)): Promise<void> => {
   const debug = hasDebugFlag(args);
+  const fileInputs = parseNonFlagArgs(args);
+  const files = getFiles(fileInputs);
 
   log.plain(chalk.blueBright('skuba lints'));
-  const internal = await internalLint('format', { debug, serial: true });
+  const internal = await internalLint('format', {
+    debug,
+    serial: true,
+    inputFiles: [],
+  });
 
   const logger = createLogger(debug);
 
   log.newline();
   log.plain(chalk.magenta('ESLint'));
 
-  const eslint = await runESLint('format', logger);
+  const eslint = await runESLint('format', logger, files);
 
   log.newline();
   log.plain(chalk.cyan('Prettier'));
 
-  const prettier = await runPrettier('format', logger);
+  const prettier = await runPrettier('format', logger, files);
 
   if (eslint.ok && prettier.ok && internal.ok) {
     return;

@@ -42,6 +42,7 @@ describe('runPrettier', () => {
       runPrettier(
         'lint',
         log,
+        [],
         path.join(__dirname, '../../../integration/base/fixable'),
       ),
     ).resolves.toMatchInlineSnapshot(`
@@ -77,6 +78,7 @@ describe('runPrettier', () => {
       runPrettier(
         'lint',
         log,
+        [],
         path.join(__dirname, '../../../integration/base/fixable'),
       ),
     ).resolves.toMatchInlineSnapshot(`

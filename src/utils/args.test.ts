@@ -1,6 +1,7 @@
 import {
   hasDebugFlag,
   hasSerialFlag,
+  parseNonFlagArgs,
   parseProcessArgs,
   parseRunArgs,
 } from './args';
@@ -135,5 +136,22 @@ describe('parseRunArgs', () => {
     ${'listen.ts --port 1234'}                           | ${'listen.ts'} | ${undefined} | ${[]}                     | ${['--port', '1234']}
   `('$input', ({ input, ...expected }: TestCase) =>
     expect(parseRunArgs(input.split(' '))).toEqual(expected),
+  );
+});
+
+describe('parseNonFlagArgs', () => {
+  interface TestCase {
+    input: string;
+    result: string[];
+  }
+
+  test.each`
+    input                     | result
+    ${'foo.ts bar.ts --flag'} | ${['foo.ts', 'bar.ts']}
+    ${'foo.ts --flag bar.ts'} | ${['foo.ts', 'bar.ts']}
+    ${'--flag foo.ts bar.ts'} | ${['foo.ts', 'bar.ts']}
+    ${'--flag'}               | ${[]}
+  `('$input', ({ input, result }: TestCase) =>
+    expect(parseNonFlagArgs(input.split(' '))).toEqual(result),
   );
 });

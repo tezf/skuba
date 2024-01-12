@@ -1,7 +1,11 @@
 import type { Writable } from 'stream';
 import { inspect } from 'util';
 
-import { hasDebugFlag, hasSerialFlag } from '../../utils/args';
+import {
+  hasDebugFlag,
+  hasSerialFlag,
+  parseNonFlagArgs,
+} from '../../utils/args';
 import { log } from '../../utils/logging';
 import { detectPackageManager } from '../../utils/packageManager';
 import { throwOnTimeout } from '../../utils/wait';
@@ -9,6 +13,7 @@ import { throwOnTimeout } from '../../utils/wait';
 import { createAnnotations } from './annotate';
 import { autofix } from './autofix';
 import { externalLint } from './external';
+import { getFiles } from './files';
 import { internalLint } from './internal';
 import type { Input } from './types';
 
@@ -22,6 +27,7 @@ export const lint = async (
     serial: hasSerialFlag(args),
     tscOutputStream: tscWriteable,
     workerThreads,
+    inputFiles: getFiles(parseNonFlagArgs(args)),
   };
 
   const { eslint, prettier, tscOk, tscOutputStream } = await externalLint(opts);

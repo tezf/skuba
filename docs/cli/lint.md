@@ -62,6 +62,25 @@ you can limit this with the `--serial` flag.
 
 [GitHub autofixes] are enabled when CI and GitHub environment variables are present.
 
+### Linting/formatting specific files
+
+`skuba format` and `skuba lint` accept optional glob patterns using glob syntax from the [fast-glob] module. which allow you to target specific files.
+
+```shell
+skuba format src/index.ts
+
+Processed skuba lints in 0.03s.
+
+ESLint
+Processed 1 file in 2.13s.
+
+Prettier
+Processed 1 file in 0.11s.
+✨  Done in 5.57s.
+```
+
+When using `skuba lint` with glob patterns, the `tsc` compiler will always run over the directories defined by your local project's `tsconfig.json`.
+
 ### Annotations
 
 `skuba lint` can automatically emit annotations in CI.
@@ -75,6 +94,7 @@ you can limit this with the `--serial` flag.
 [eslint deep dive]: ../deep-dives/eslint.md
 [eslint-config-seek]: https://github.com/seek-oss/eslint-config-seek
 [ESLint]: https://eslint.org/
+[fast-glob]: https://github.com/mrmlnc/fast-glob#pattern-syntax
 [GitHub annotations]: ../deep-dives/github.md#github-annotations
 [GitHub autofixes]: ../deep-dives/github.md#github-autofixes
 [prescribe ESLint]: https://myseek.atlassian.net/wiki/spaces/AA/pages/2358346041/#TypeScript

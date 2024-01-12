@@ -137,12 +137,12 @@ export const autofix = async (params: AutofixParameters): Promise<void> => {
     }
 
     if (params.eslint) {
-      await runESLint('format', logger);
+      await runESLint('format', logger, []);
     }
 
     // Unconditionally re-run Prettier; reaching here means we have pre-existing
     // format violations or may have created new ones through ESLint/internal fixes.
-    await runPrettier('format', logger);
+    await runPrettier('format', logger, []);
 
     if (process.env.GITHUB_ACTIONS) {
       // GitHub runners have Git installed locally

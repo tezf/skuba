@@ -140,3 +140,8 @@ const parseRunArgsIteration = (state: RunArgs, args: string[]): string[] => {
   state.script.push(...args.slice(1));
   return [];
 };
+
+export const parseNonFlagArgs = (args: string[]): string[] => {
+  const files = args.filter((arg) => !arg.startsWith('-'));
+  return files;
+};

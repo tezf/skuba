@@ -29,6 +29,7 @@ export interface ESLintOutput {
 export const runESLint = async (
   mode: 'format' | 'lint',
   logger: Logger,
+  inputFiles: string[],
 ): Promise<ESLintOutput> => {
   logger.debug('Initialising ESLint...');
 
@@ -46,7 +47,7 @@ export const runESLint = async (
 
   const [formatter, results] = await Promise.all([
     engine.loadFormatter(),
-    engine.lintFiles('.'),
+    engine.lintFiles(inputFiles.length ? inputFiles : '.'),
   ]);
 
   const end = process.hrtime.bigint();

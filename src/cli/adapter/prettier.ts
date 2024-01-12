@@ -155,6 +155,7 @@ export interface PrettierOutput {
 export const runPrettier = async (
   mode: 'format' | 'lint',
   logger: Logger,
+  inputFiles: string[],
   cwd = process.cwd(),
 ): Promise<PrettierOutput> => {
   logger.debug('Initialising Prettier...');
@@ -176,10 +177,9 @@ export const runPrettier = async (
   // This avoids exhibiting different behaviour than a Prettier IDE integration,
   // though it may present headaches if `.gitignore` and `.prettierignore` rules
   // conflict.
-  const relativeFilepaths = await crawlDirectory(directory, [
-    '.gitignore',
-    '.prettierignore',
-  ]);
+  const relativeFilepaths = inputFiles.length
+    ? inputFiles
+    : await crawlDirectory(directory, ['.gitignore', '.prettierignore']);
 
   logger.debug(`Discovered ${pluralise(relativeFilepaths.length, 'file')}.`);
 

@@ -11,8 +11,8 @@ import type { Input } from './types';
 
 const LOG_PREFIX = chalk.magenta('ESLint   │');
 
-export const runESLintInCurrentThread = ({ debug }: Input) =>
-  runESLint('lint', createLogger(debug, LOG_PREFIX));
+export const runESLintInCurrentThread = ({ debug, inputFiles }: Input) =>
+  runESLint('lint', createLogger(debug, LOG_PREFIX), inputFiles);
 
 export const runESLintInWorkerThread = (input: Input) =>
   execWorkerThread<Input, ESLintOutput>(

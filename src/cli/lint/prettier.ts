@@ -11,8 +11,8 @@ import type { Input } from './types';
 
 const LOG_PREFIX = chalk.cyan('Prettier │');
 
-export const runPrettierInCurrentThread = ({ debug }: Input) =>
-  runPrettier('lint', createLogger(debug, LOG_PREFIX));
+export const runPrettierInCurrentThread = ({ debug, inputFiles }: Input) =>
+  runPrettier('lint', createLogger(debug, LOG_PREFIX), inputFiles);
 
 export const runPrettierInWorkerThread = (input: Input) =>
   execWorkerThread<Input, PrettierOutput>(

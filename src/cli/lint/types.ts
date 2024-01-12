@@ -34,4 +34,11 @@ export interface Input {
    * Defaults to `true`.
    */
   workerThreads?: boolean;
+
+  /**
+   * Files specified by the user to be linted/formatted
+   *
+   * This may be an empty list, in which case all files in the current working directory will be linted/formatted
+   */
+  inputFiles: string[];
 }
