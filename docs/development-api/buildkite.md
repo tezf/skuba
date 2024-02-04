@@ -8,7 +8,7 @@ parent: Development API
 
 ## annotate
 
-Asynchronously uploads a Buildkite annotation.
+Asynchronously uploads a Buildkite annotation
 
 If the following environment variables are not present,
 the function will silently return without attempting to annotate:
