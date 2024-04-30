@@ -1,5 +1,5 @@
 ---
-"skuba-dive": patch
+'skuba-dive': patch
 ---
 
 Test publishing only
