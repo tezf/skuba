@@ -14,6 +14,7 @@ export const TEMPLATE_NAMES = [
   'lambda-sqs-worker-cdk',
   'oss-npm-package',
   'private-npm-package',
+  'private-npm-package-changesets',
 ] as const;
 
 export type TemplateName = (typeof TEMPLATE_NAMES)[number];
