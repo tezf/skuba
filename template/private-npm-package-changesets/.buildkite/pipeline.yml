@@ -1,0 +1,40 @@
+configs:
+  agents:
+    queue: artefacts:npm2
+  plugins:
+    - &docker
+      docker#v5.8.0:
+        image: node:20
+        environment:
+          - CI=true
+          - BUILDKITE_REPO
+          - BUILDKITE_BRANCH
+          - BUILDKITE_COMMIT
+          - BUILDKITE_BUILD_NUMBER
+        mount-buildkite-agent: true
+
+steps:
+  - <<: *docker
+    label: ':butterfly: Changesets'
+    branches: 'master'
+    command:
+      - echo '+++ Install'
+      - pnpm install --frozen-lockfile
+      - echo '+++ Build'
+      - pnpm build
+      - echo '+++ Changesets'
+      - pnpm buildkite-changesets
+
+  - block: ':camera: Publish snapshot version'
+    branches: '!master'
+
+  - <<: *docker
+    label: ':butterfly: Snapshot'
+    branches: '!master'
+    command:
+      - echo '+++ Install'
+      - pnpm install --frozen-lockfile
+      - echo '+++ Build'
+      - pnpm build
+      - echo '+++ Changesets'
+      - pnpm buildkite-changesets snapshot

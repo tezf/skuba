@@ -1,0 +1,43 @@
+{
+  "name": "<%- moduleName %>",
+  "version": "0.0.0",
+  "description": "<%- description %>",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/<%- orgName %>/<%- repoName %>.git"
+  },
+  "license": "UNLICENSED",
+  "sideEffects": false,
+  "main": "./lib-commonjs/index.js",
+  "module": "./lib-es2015/index.js",
+  "types": "./lib-types/index.d.ts",
+  "files": [
+    "lib*/**/*.d.ts",
+    "lib*/**/*.js",
+    "lib*/**/*.js.map",
+    "lib*/**/*.json"
+  ],
+  "scripts": {
+    "build": "skuba build",
+    "format": "skuba format",
+    "lint": "skuba lint",
+    "start": "skuba start",
+    "start:debug": "pnpm --silent start --inspect-brk",
+    "test": "skuba test",
+    "test:ci": "skuba test --coverage",
+    "test:watch": "skuba test --watch"
+  },
+  "dependencies": {
+    "skuba-dive": "^2.0.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@seek/buildkite-changesets": "^2.4.2",
+    "@types/node": "^20.9.0",
+    "skuba": "*"
+  },
+  "packageManager": "pnpm@9.0.5",
+  "engines": {
+    "node": ">=20"
+  }
+}

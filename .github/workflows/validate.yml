@@ -125,6 +125,7 @@ jobs:
           - lambda-sqs-worker-cdk
           - oss-npm-package
           - private-npm-package
+          - private-npm-package-changesets
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
