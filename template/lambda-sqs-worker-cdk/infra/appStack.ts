@@ -15,7 +15,7 @@ import {
 } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
 
-import { config } from './config';
+import { config } from './config.js';
 
 export class AppStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {

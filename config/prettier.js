@@ -1,6 +1,6 @@
-module.exports = {
+export default {
   singleQuote: true,
   tabWidth: 2,
   trailingComma: 'all',
-  plugins: [require.resolve('prettier-plugin-packagejson')],
+  plugins: [import.meta.resolve('prettier-plugin-packagejson')],
 };

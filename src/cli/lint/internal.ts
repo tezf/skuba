@@ -2,12 +2,12 @@ import { inspect } from 'util';
 
 import chalk from 'chalk';
 
-import { type Logger, createLogger } from '../../utils/logging';
+import { type Logger, createLogger } from '../../utils/logging.js';
 
-import { noSkubaTemplateJs } from './internalLints/noSkubaTemplateJs';
-import { tryRefreshConfigFiles } from './internalLints/refreshConfigFiles';
-import { upgradeSkuba } from './internalLints/upgrade';
-import type { Input } from './types';
+import { noSkubaTemplateJs } from './internalLints/noSkubaTemplateJs.js';
+import { tryRefreshConfigFiles } from './internalLints/refreshConfigFiles.js';
+import { upgradeSkuba } from './internalLints/upgrade/index.js';
+import type { Input } from './types.js';
 
 export type InternalLintResult = {
   ok: boolean;

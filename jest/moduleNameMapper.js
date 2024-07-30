@@ -1,10 +1,10 @@
-const path = require('path');
+import path from 'path';
 
-const { pathsToModuleNameMapper } = require('ts-jest');
+import { pathsToModuleNameMapper } from 'ts-jest';
 
-const { tryParseTsConfig } = require('./tsConfig');
+import { tryParseTsConfig } from './tsConfig.js';
 
-module.exports.createModuleNameMapper = (getConfig) => {
+export const createModuleNameMapper = (getConfig) => {
   const maybeTsConfig = tryParseTsConfig(getConfig);
 
   const paths = Object.fromEntries(

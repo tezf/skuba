@@ -1,4 +1,4 @@
-import { run } from 'jest';
+import jest from 'jest';
 
 export const test = async () => {
   // This is usually set in `jest-cli`'s binary wrapper
@@ -6,5 +6,5 @@ export const test = async () => {
 
   const argv = process.argv.slice(2);
 
-  return run(argv);
+  return jest.run(argv);
 };

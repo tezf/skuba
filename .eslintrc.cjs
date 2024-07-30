@@ -1,4 +1,4 @@
-const { ts } = require('eslint-config-seek/extensions');
+const ts = ['ts', 'cts', 'mts', 'tsx'];
 
 module.exports = {
   extends: ['skuba'],
@@ -33,5 +33,17 @@ module.exports = {
   rules: {
     // internal to skuba itself
     'no-process-exit': 'off',
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
+
+        extensionAlias: {
+          '.js': ['.ts', '.d.ts', '.js'],
+        },
+      },
+    },
   },
 };

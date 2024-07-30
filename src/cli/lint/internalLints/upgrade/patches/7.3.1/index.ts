@@ -1,10 +1,10 @@
-import type { Patches } from '../..';
-import { tryPatchRenovateConfig } from '../../../patchRenovateConfig';
+import { tryPatchRenovateConfig } from '../../../patchRenovateConfig.js';
+import type { Patches } from '../../index.js';
 
-import { tryAddEmptyExports } from './addEmptyExports';
-import { tryMoveNpmrcOutOfIgnoreManagedSection } from './moveNpmrcOutOfIgnoreManagedSection';
-import { tryPatchDockerfile } from './patchDockerfile';
-import { tryPatchServerListener } from './patchServerListener';
+import { tryAddEmptyExports } from './addEmptyExports.js';
+import { tryMoveNpmrcOutOfIgnoreManagedSection } from './moveNpmrcOutOfIgnoreManagedSection.js';
+import { tryPatchDockerfile } from './patchDockerfile.js';
+import { tryPatchServerListener } from './patchServerListener.js';
 
 export const patches: Patches = [
   {

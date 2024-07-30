@@ -1,7 +1,7 @@
-const { defaults } = require('ts-jest/presets');
-const { ModuleResolutionKind } = require('typescript');
+import presets from 'ts-jest/presets/index.js';
+import { ModuleResolutionKind } from 'typescript';
 
-const { tryParseTsConfig } = require('./tsConfig');
+import { tryParseTsConfig } from './tsConfig.js';
 
 const TS_JEST_NAME = 'ts-jest';
 
@@ -11,7 +11,7 @@ const TS_JEST_NAME = 'ts-jest';
  * This allows Jest to resolve the preset even if it is installed to a nested
  * `./node_modules/skuba/node_modules/ts-jest` directory.
  */
-const TS_JEST_PATH = require.resolve(TS_JEST_NAME);
+const TS_JEST_PATH = import.meta.resolve(TS_JEST_NAME);
 
 const maybeTsConfig = tryParseTsConfig();
 
@@ -39,8 +39,8 @@ const tsconfig = BROKEN_MODULE_RESOLUTIONS.has(
   : undefined;
 
 // Rewrite `ts-jest` transformations using our resolved `TS_JEST_PATH`.
-module.exports.transform = Object.fromEntries(
-  Object.entries(defaults.transform).map(([key, value]) => {
+export const transform = Object.fromEntries(
+  Object.entries(presets.defaults.transform).map(([key, value]) => {
     if (typeof value === 'string') {
       return [
         key,

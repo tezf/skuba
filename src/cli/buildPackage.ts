@@ -1,7 +1,7 @@
-import { hasSerialFlag } from '../utils/args';
-import { execConcurrently } from '../utils/exec';
+import { hasSerialFlag } from '../utils/args.js';
+import { execConcurrently } from '../utils/exec.js';
 
-import { copyAssetsConcurrently } from './build/assets';
+import { copyAssetsConcurrently } from './build/assets.js';
 
 export const buildPackage = async (args = process.argv.slice(2)) => {
   await execConcurrently(

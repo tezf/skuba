@@ -2,9 +2,9 @@ import path from 'path';
 
 import type { TestResult } from '@jest/test-result';
 import stripAnsi from 'strip-ansi';
-import dedent from 'ts-dedent';
+import { dedent } from 'ts-dedent';
 
-import type * as GitHub from '../../../../api/github';
+import type * as GitHub from '../../../../api/github/index.js';
 
 /**
  * Matches the first stack trace location in a Jest failure message.

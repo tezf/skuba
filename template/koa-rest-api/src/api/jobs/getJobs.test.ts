@@ -1,4 +1,4 @@
-import { agentFromRouter } from 'src/testing/server';
+import { agentFromRouter } from 'src/testing/server.js';
 
 import { jobRouter } from '.';
 

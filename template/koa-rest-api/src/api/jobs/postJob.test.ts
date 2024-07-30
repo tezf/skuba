@@ -1,5 +1,5 @@
-import { agentFromRouter } from 'src/testing/server';
-import { mockJobInput } from 'src/testing/types';
+import { agentFromRouter } from 'src/testing/server.js';
+import { mockJobInput } from 'src/testing/types.js';
 
 import { jobRouter } from '.';
 

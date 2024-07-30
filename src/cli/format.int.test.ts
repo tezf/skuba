@@ -1,11 +1,11 @@
 import crypto from 'crypto';
 import path from 'path';
 
-import fs, { copy } from 'fs-extra';
+import fs from 'fs-extra';
 import git from 'isomorphic-git';
 import { diff } from 'jest-diff';
 
-import { format } from './format';
+import { format } from './format.js';
 
 jest.setTimeout(15_000);
 
@@ -23,9 +23,21 @@ jest
 
 const SOURCE_FILES = ['a/a/a.ts', 'b.md', 'c.json', 'd.js'];
 
-const BASE_PATH = path.join(__dirname, '..', '..', 'integration', 'base');
+const BASE_PATH = path.join(
+  import.meta.dirname,
+  '..',
+  '..',
+  'integration',
+  'base',
+);
 
-const TEMP_PATH = path.join(__dirname, '..', '..', 'integration', 'format');
+const TEMP_PATH = path.join(
+  import.meta.dirname,
+  '..',
+  '..',
+  'integration',
+  'format',
+);
 
 const stdout = (randomMatcher: RegExp) => {
   const result = stdoutMock.mock.calls
@@ -61,7 +73,7 @@ const gitModifiedAndUnstaged = async (dir: string) => {
 };
 
 const prepareTempDirectory = async (baseDir: string, tempDir: string) => {
-  await copy(baseDir, tempDir);
+  await fs.copy(baseDir, tempDir);
 
   process.chdir(tempDir);
 

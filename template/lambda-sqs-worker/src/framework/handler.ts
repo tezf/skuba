@@ -1,7 +1,7 @@
 import { datadog } from 'datadog-lambda-js';
 
-import { config } from 'src/config';
-import { logger, loggerContext } from 'src/framework/logging';
+import { config } from 'src/config.js';
+import { logger, loggerContext } from 'src/framework/logging.js';
 
 interface LambdaContext {
   awsRequestId: string;

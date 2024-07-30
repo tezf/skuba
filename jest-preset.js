@@ -1,11 +1,11 @@
-const { defaults } = require('ts-jest/presets');
+import presets from 'ts-jest/presets/index.js';
 
-const { createModuleNameMapper } = require('./jest/moduleNameMapper');
-const { transform } = require('./jest/transform');
+import { createModuleNameMapper } from './jest/moduleNameMapper.js';
+import { transform } from './jest/transform.js';
 
 /** @type {import('@jest/types').Config.InitialOptions} */
-module.exports = {
-  ...defaults,
+export default {
+  ...presets.defaults,
 
   moduleNameMapper: createModuleNameMapper(),
   transform,
@@ -25,8 +25,8 @@ module.exports = {
   prettierPath: null,
   reporters: [
     'default',
-    require.resolve('./lib/cli/test/reporters/github'),
-    require.resolve('./lib/cli/test/reporters/prettier'),
+    import.meta.resolve('./lib/cli/test/reporters/github'),
+    import.meta.resolve('./lib/cli/test/reporters/prettier'),
   ],
   testEnvironment: 'node',
   testPathIgnorePatterns: [
@@ -34,7 +34,7 @@ module.exports = {
     '<rootDir>/(coverage|dist|lib|tmp).*/',
   ],
   watchPlugins: [
-    require.resolve('jest-watch-typeahead/filename'),
-    require.resolve('jest-watch-typeahead/testname'),
+    import.meta.resolve('jest-watch-typeahead/filename'),
+    import.meta.resolve('jest-watch-typeahead/testname'),
   ],
 };

@@ -2,13 +2,13 @@
 
 import path from 'path';
 
-import fs, { copy } from 'fs-extra';
+import fs from 'fs-extra';
 import semver from 'semver';
 
 import {
   TEMPLATE_DOCUMENTATION_CONFIG,
   TEMPLATE_NAMES,
-} from '../src/utils/template';
+} from '../src/utils/template.js';
 
 const SCOPE_REGEX = /\*\*([^:]+):\*\* /;
 
@@ -208,7 +208,7 @@ const compileChangesByTemplate = (changelog: string) => {
 };
 
 const main = async () => {
-  const root = path.join(__dirname, '..');
+  const root = path.join(import.meta.dirname, '..');
 
   await ensureTemplateConsistency(root);
 
@@ -235,8 +235,8 @@ const main = async () => {
       path.join('dist-docs', 'CONTRIBUTING.md'),
     ),
     // `fs.promises.cp` is still experimental in Node.js 20.
-    copy('site', 'dist-docs'),
-    copy('docs', path.join('dist-docs', 'docs')),
+    fs.copy('site', 'dist-docs'),
+    fs.copy('docs', path.join('dist-docs', 'docs')),
   ]);
 
   const templateChanges = compileChangesByTemplate(changelog);

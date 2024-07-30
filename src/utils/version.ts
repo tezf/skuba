@@ -1,8 +1,8 @@
 import searchNpm from 'libnpmsearch';
 import validatePackageName from 'validate-npm-package-name';
 
-import { getSkubaManifest } from './manifest';
-import { withTimeout } from './wait';
+import { getSkubaManifest } from './manifest.js';
+import { withTimeout } from './wait.js';
 
 export const latestNpmVersion = async (
   packageName: string,

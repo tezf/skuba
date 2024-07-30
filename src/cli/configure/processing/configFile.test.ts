@@ -2,7 +2,7 @@ import {
   generateIgnoreFileSimpleVariants,
   generateNpmrcSimpleVariants,
   mergeWithConfigFile,
-} from './configFile';
+} from './configFile.js';
 
 describe('generateIgnoreFileSimpleVariants', () => {
   it.each([

@@ -2,7 +2,7 @@ const findUp = jest.fn();
 
 jest.mock('find-up', () => findUp);
 
-import { detectPackageManager } from './packageManager';
+import { detectPackageManager } from './packageManager.js';
 
 const stdoutMock = jest.fn();
 

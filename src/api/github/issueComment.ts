@@ -1,10 +1,10 @@
 import type { Octokit } from '@octokit/rest';
 
-import * as Git from '../git';
+import * as Git from '../git/index.js';
 
-import { apiTokenFromEnvironment } from './environment';
-import { createRestClient } from './octokit';
-import { getPullRequestNumber } from './pullRequest';
+import { apiTokenFromEnvironment } from './environment.js';
+import { createRestClient } from './octokit.js';
+import { getPullRequestNumber } from './pullRequest.js';
 
 const getUserId = async (client: Octokit): Promise<number> => {
   const { data } = await client.users.getAuthenticated();
@@ -103,7 +103,7 @@ export const putIssueComment = async (
     params.userId === 'seek-build-agency'
       ? // https://api.github.com/users/buildagencygitapitoken[bot]
         87109344
-      : params.userId ?? (await getUserId(client));
+      : (params.userId ?? (await getUserId(client)));
 
   const commentId = comments.data.find(
     (comment) =>

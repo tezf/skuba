@@ -12,19 +12,18 @@
 
 import path from 'path';
 
-import { parseProcessArgs } from './utils/args';
+import { parseProcessArgs } from './utils/args.js';
 import {
   COMMAND_DIR,
   COMMAND_SET,
   type Command,
   commandToModule,
-} from './utils/command';
-import { isCiEnv } from './utils/env';
-import { handleCliError } from './utils/error';
-import { showHelp } from './utils/help';
-import { log } from './utils/logging';
-import { showLogoAndVersionInfo } from './utils/logo';
-import { hasProp } from './utils/validation';
+} from './utils/command.js';
+import { isCiEnv } from './utils/env.js';
+import { handleCliError } from './utils/error.js';
+import { showHelp } from './utils/help.js';
+import { log } from './utils/logging.js';
+import { showLogoAndVersionInfo } from './utils/logo.js';
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 
@@ -34,12 +33,13 @@ const skuba = async () => {
   if (COMMAND_SET.has(commandName)) {
     const moduleName = commandToModule(commandName as Command);
 
-    /* eslint-disable @typescript-eslint/no-var-requires */
-    const commandModule = require(
-      path.join(COMMAND_DIR, moduleName),
-    ) as unknown;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const commandModule = await import(
+      path.join(COMMAND_DIR, moduleName, 'index.js')
+    );
 
-    if (!hasProp(commandModule, moduleName)) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if (!commandModule[moduleName]) {
       log.err(log.bold(commandName), "couldn't run! Please submit an issue.");
       process.exitCode = 1;
       return;

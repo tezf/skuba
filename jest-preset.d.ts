@@ -2,4 +2,4 @@ import type { Config } from '@jest/types';
 
 declare const moduleExports: Config.InitialOptions;
 
-export = moduleExports;
+export default moduleExports;

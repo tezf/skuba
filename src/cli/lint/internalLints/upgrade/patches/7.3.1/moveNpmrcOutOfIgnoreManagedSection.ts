@@ -3,10 +3,10 @@ import { inspect } from 'util';
 
 import fs from 'fs-extra';
 
-import type { PatchFunction, PatchReturnType } from '../..';
-import { log } from '../../../../../../utils/logging';
-import { NPMRC_LINES } from '../../../../../../utils/npmrc';
-import { createDestinationFileReader } from '../../../../../configure/analysis/project';
+import { log } from '../../../../../../utils/logging.js';
+import { NPMRC_LINES } from '../../../../../../utils/npmrc.js';
+import { createDestinationFileReader } from '../../../../../configure/analysis/project.js';
+import type { PatchFunction, PatchReturnType } from '../../index.js';
 
 const NPMRC_IGNORE_SECTION = `
 

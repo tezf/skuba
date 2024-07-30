@@ -1,9 +1,9 @@
 import { readdir, writeFile } from 'fs-extra';
 import type { NormalizedPackageJson } from 'read-pkg-up';
 
-import { log } from '../../../../utils/logging';
-import { getConsumerManifest } from '../../../../utils/manifest';
-import { getSkubaVersion } from '../../../../utils/version';
+import { log } from '../../../../utils/logging.js';
+import { getConsumerManifest } from '../../../../utils/manifest.js';
+import { getSkubaVersion } from '../../../../utils/version.js';
 
 import { upgradeSkuba } from '.';
 

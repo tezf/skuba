@@ -1,5 +1,4 @@
 import path from 'path';
-
 export type Command = (typeof COMMAND_LIST)[number];
 
 export const COMMAND_ALIASES: Record<string, Command> = {
@@ -9,7 +8,7 @@ export const COMMAND_ALIASES: Record<string, Command> = {
   '--version': 'version',
 };
 
-export const COMMAND_DIR = path.join(__dirname, '..', 'cli');
+export const COMMAND_DIR = path.join(import.meta.dirname, '..', 'cli');
 
 export const COMMAND_LIST = [
   'build',

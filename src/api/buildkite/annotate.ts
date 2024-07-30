@@ -1,4 +1,4 @@
-import { exec, hasCommand } from '../../utils/exec';
+import { exec, hasCommand } from '../../utils/exec.js';
 
 export type AnnotationStyle = 'success' | 'info' | 'warning' | 'error';
 

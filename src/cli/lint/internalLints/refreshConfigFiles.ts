@@ -1,21 +1,21 @@
 import path from 'path';
 import { inspect } from 'util';
 
-import { writeFile } from 'fs-extra';
+import fs from 'fs-extra';
 import stripAnsi from 'strip-ansi';
 
-import { Git } from '../../..';
-import type { Logger } from '../../../utils/logging';
-import { NPMRC_LINES, hasNpmrcSecret } from '../../../utils/npmrc';
+import { Git } from '../../../index.js';
+import type { Logger } from '../../../utils/logging.js';
+import { NPMRC_LINES, hasNpmrcSecret } from '../../../utils/npmrc.js';
 import {
   type PackageManagerConfig,
   detectPackageManager,
-} from '../../../utils/packageManager';
-import { readBaseTemplateFile } from '../../../utils/template';
-import { getDestinationManifest } from '../../configure/analysis/package';
-import { createDestinationFileReader } from '../../configure/analysis/project';
-import { mergeWithConfigFile } from '../../configure/processing/configFile';
-import type { InternalLintResult } from '../internal';
+} from '../../../utils/packageManager.js';
+import { readBaseTemplateFile } from '../../../utils/template.js';
+import { getDestinationManifest } from '../../configure/analysis/package.js';
+import { createDestinationFileReader } from '../../configure/analysis/project.js';
+import { mergeWithConfigFile } from '../../configure/processing/configFile.js';
+import type { InternalLintResult } from '../internal.js';
 
 const ensureNoAuthToken = (fileContents: string) =>
   fileContents
@@ -127,7 +127,7 @@ export const refreshConfigFiles = async (
         return { needsChange: false };
       }
 
-      await writeFile(filepath, data);
+      await fs.writeFile(filepath, data);
       return {
         needsChange: false,
         msg: `Refreshed ${logger.bold(filename)}.`,

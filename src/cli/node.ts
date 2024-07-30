@@ -3,9 +3,9 @@ import path from 'path';
 import getPort from 'get-port';
 import * as tsNode from 'ts-node';
 
-import { parseRunArgs } from '../utils/args';
-import { createExec } from '../utils/exec';
-import { isIpPort } from '../utils/validation';
+import { parseRunArgs } from '../utils/args.js';
+import { createExec } from '../utils/exec.js';
+import { isIpPort } from '../utils/validation.js';
 
 export const longRunning = true;
 
@@ -36,7 +36,7 @@ export const node = async () => {
       // Override dangerously warn-only default on Node.js <15 so that we
       // predictably return a non-zero exit code on an unhandled rejection.
       '--unhandled-rejections=throw',
-      path.join(__dirname, '..', 'wrapper'),
+      path.join(import.meta.dirname, '..', 'wrapper'),
       ...args.script,
     );
   }

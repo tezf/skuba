@@ -1,9 +1,9 @@
-const {
-  sys,
+import {
   findConfigFile,
-  readConfigFile,
   parseJsonConfigFileContent,
-} = require('typescript');
+  readConfigFile,
+  sys,
+} from 'typescript';
 
 /**
  * @returns {unknown}
@@ -15,7 +15,7 @@ const getTsConfigFromDisk = () => {
   return readConfigFile(filename, sys.readFile.bind(this)).config;
 };
 
-module.exports.tryParseTsConfig = (getConfig = getTsConfigFromDisk) => {
+export const tryParseTsConfig = (getConfig = getTsConfigFromDisk) => {
   try {
     const json = getConfig();
 

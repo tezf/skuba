@@ -1,7 +1,7 @@
 import type { AggregatedResult, TestContext } from '@jest/reporters';
 
-import * as GitHub from '../../../../api/github';
-import { log } from '../../../../utils/logging';
+import * as GitHub from '../../../../api/github/index.js';
+import { log } from '../../../../utils/logging.js';
 
 import GitHubReporter from '.';
 

@@ -1,8 +1,8 @@
 import http from 'http';
 
-import { isFunction, isIpPort, isObject } from '../utils/validation';
+import { isFunction, isIpPort, isObject } from '../utils/validation.js';
 
-import { serveRequestListener, startServer } from './http';
+import { serveRequestListener, startServer } from './http.js';
 
 // Express compatibility
 interface FunctionConfig extends http.RequestListener {
@@ -77,7 +77,7 @@ export const runRequestListener = async ({
   const requestListener =
     typeof config === 'function'
       ? config
-      : config.requestListener ?? config.callback?.();
+      : (config.requestListener ?? config.callback?.());
 
   if (typeof requestListener !== 'function') {
     // Assume an executable script with non-request listener exports

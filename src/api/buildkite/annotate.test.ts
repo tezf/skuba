@@ -1,6 +1,6 @@
-import * as execModule from '../../utils/exec';
+import * as execModule from '../../utils/exec.js';
 
-import { annotate } from './annotate';
+import { annotate } from './annotate.js';
 
 const exec = jest.spyOn(execModule, 'exec');
 const hasCommand = jest.spyOn(execModule, 'hasCommand');

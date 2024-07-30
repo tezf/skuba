@@ -1,9 +1,9 @@
-import { readBaseTemplateFile } from '../../../utils/template';
-import { mergeWithConfigFile } from '../processing/configFile';
-import { deleteFiles } from '../processing/deleteFiles';
-import { withPackage } from '../processing/package';
-import { formatPrettier } from '../processing/prettier';
-import type { Module } from '../types';
+import { readBaseTemplateFile } from '../../../utils/template.js';
+import { mergeWithConfigFile } from '../processing/configFile.js';
+import { deleteFiles } from '../processing/deleteFiles.js';
+import { withPackage } from '../processing/package.js';
+import { formatPrettier } from '../processing/prettier.js';
+import type { Module } from '../types.js';
 
 export const eslintModule = async (): Promise<Module> => {
   const [configFile, ignoreFile] = await Promise.all([

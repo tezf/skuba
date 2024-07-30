@@ -7,11 +7,11 @@ import fs, { copy } from 'fs-extra';
 import git from 'isomorphic-git';
 
 import { Buildkite } from '..';
-import type { Logger } from '../utils/logging';
-import { getSkubaVersion } from '../utils/version';
+import type { Logger } from '../utils/logging.js';
+import { getSkubaVersion } from '../utils/version.js';
 
-import { lint } from './lint';
-import { refreshConfigFiles } from './lint/internalLints/refreshConfigFiles';
+import { refreshConfigFiles } from './lint/internalLints/refreshConfigFiles.js';
+import { lint } from './lint.js';
 
 jest.setTimeout(30_000);
 
@@ -33,9 +33,21 @@ jest
 
 const tscOutputStream = new stream.PassThrough().on('data', stdoutMock);
 
-const BASE_PATH = path.join(__dirname, '..', '..', 'integration', 'base');
+const BASE_PATH = path.join(
+  import.meta.dirname,
+  '..',
+  '..',
+  'integration',
+  'base',
+);
 
-const TEMP_PATH = path.join(__dirname, '..', '..', 'integration', 'lint');
+const TEMP_PATH = path.join(
+  import.meta.dirname,
+  '..',
+  '..',
+  'integration',
+  'lint',
+);
 
 const stdout = (randomMatcher: RegExp) => {
   const result = stdoutMock.mock.calls

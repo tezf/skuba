@@ -4,8 +4,8 @@ import {
   buildPatternToFilepathMap,
   crawlDirectory,
   createInclusionFilter,
-} from './dir';
-import { BASE_TEMPLATE_DIR } from './template';
+} from './dir.js';
+import { BASE_TEMPLATE_DIR } from './template.js';
 
 describe('buildPatternToFilepathMap', () => {
   it('deals with different levels of nesting', () =>
@@ -88,7 +88,9 @@ describe('buildPatternToFilepathMap', () => {
 
 describe('crawlDirectory', () => {
   it('works on skuba itself', async () => {
-    const filepaths = await crawlDirectory(path.join(__dirname, '..', '..'));
+    const filepaths = await crawlDirectory(
+      path.join(import.meta.dirname, '..', '..'),
+    );
 
     expect(filepaths).toContain('.github/CODEOWNERS');
     expect(filepaths).toContain('src/index.ts');

@@ -1,10 +1,10 @@
 import fs from 'fs-extra';
 import git from 'isomorphic-git';
-import http from 'isomorphic-git/http/node';
+import http from 'isomorphic-git/http/node/index.js';
 
-import { apiTokenFromEnvironment } from '../github/environment';
+import { apiTokenFromEnvironment } from '../github/environment.js';
 
-import { getOwnerAndRepo } from './remote';
+import { getOwnerAndRepo } from './remote.js';
 
 /**
  * Use a GitHub app token to auth the Git push.

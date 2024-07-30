@@ -1,7 +1,7 @@
 import readPkgUp, { type NormalizedPackageJson } from 'read-pkg-up';
 import { z } from 'zod';
 
-import { hasProp } from './validation';
+import { hasProp } from './validation.js';
 
 export type ProjectType = z.infer<typeof projectTypeSchema>;
 
@@ -21,7 +21,7 @@ export const getSkubaManifest = async (): Promise<NormalizedPackageJson> => {
     return skubaManifest;
   }
 
-  const result = await readPkgUp({ cwd: __dirname });
+  const result = await readPkgUp({ cwd: import.meta.dirname });
 
   if (result === undefined) {
     throw Error('skuba could not find its own manifest');

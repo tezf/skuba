@@ -1,10 +1,10 @@
 import fs from 'fs-extra';
 
-import type { PatchConfig } from '../..';
-import * as packageAnalysis from '../../../../../configure/analysis/package';
-import * as projectAnalysis from '../../../../../configure/analysis/project';
+import * as packageAnalysis from '../../../../../configure/analysis/package.js';
+import * as projectAnalysis from '../../../../../configure/analysis/project.js';
+import type { PatchConfig } from '../../index.js';
 
-import { tryMoveNpmrcOutOfIgnoreManagedSection } from './moveNpmrcOutOfIgnoreManagedSection';
+import { tryMoveNpmrcOutOfIgnoreManagedSection } from './moveNpmrcOutOfIgnoreManagedSection.js';
 
 jest
   .spyOn(packageAnalysis, 'getDestinationManifest')

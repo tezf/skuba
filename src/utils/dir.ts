@@ -1,10 +1,12 @@
 import path from 'path';
 
 import fs from 'fs-extra';
-import ignore from 'ignore';
+import ignore, { type Ignore } from 'ignore';
 import picomatch from 'picomatch';
 
-import { isErrorWithCode } from './error';
+const typedIgnore = (ignore as unknown as () => Ignore)();
+
+import { isErrorWithCode } from './error.js';
 
 /**
  * Build a map that associates each glob pattern with its matching filepaths.
@@ -75,9 +77,9 @@ export const createInclusionFilter = async (ignoreFilepaths: string[]) => {
 
   const managers = ignoreFiles
     .filter((value): value is string => typeof value === 'string')
-    .map((value) => ignore().add(value));
+    .map((value) => typedIgnore.add(value));
 
-  return ignore().add('.git').add(managers).createFilter();
+  return typedIgnore.add('.git').add(managers).createFilter();
 };
 
 /**

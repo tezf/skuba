@@ -3,9 +3,9 @@ import path from 'path';
 import git from 'isomorphic-git';
 import memfs, { fs, vol } from 'memfs';
 
-import newGit from '../../../integration/git/new.json';
+import newGit from '../../../integration/git/new.json.js';
 
-import { commitAllChanges } from './commitAllChanges';
+import { commitAllChanges } from './commitAllChanges.js';
 
 jest.mock('fs-extra', () => memfs);
 
